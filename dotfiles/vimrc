@@ -1,0 +1,93 @@
+set t_Co=256
+set encoding=utf-8 " Necessary to show Unicode glyphs
+set nocompatible              " be iMproved, required
+set laststatus=2   " Always show the statusline
+
+" configuring cursorline
+set cursorline
+hi cursorline cterm=none term=none
+autocmd WinEnter * setlocal cursorline
+autocmd WinLeave * setlocal nocursorline
+highlight CursorLine guibg=#303000 ctermbg=234
+
+set nu " configuring for dispaly number line when start vim
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/nerdtree'
+"Plugin 'altercation/vim-colors-solarized'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'scrooloose/syntastic'
+Plugin 'mattn/emmet-vim'
+Plugin 'https://github.com/tpope/vim-repeat.git'
+Plugin 'https://github.com/myusuf3/numbers.vim.git'
+Plugin 'https://github.com/tpope/vim-commentary.git'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+Plugin 'ervandew/supertab'
+Plugin 'ryanoasis/vim-devicons'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" -------- Setting Plugin
+"
+" airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = 'jellybeans'                                                 
+let g:airline_powerline_fonts = 1
+" folder icon
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+" color theme
+let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" emmet config
+let g:use_emmet_complete_tag = 1
+let g:user_emmet_leader_key='<C-M>'
+autocmd FileType html,css,php EmmetInstall
+" setting supertab completeme
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" config split style, remove ~ character
+hi! VertSplit ctermfg=8 ctermbg=8 term=NONE
+hi! NonText ctermbg=bg ctermfg=bg guibg=bg guifg=bg
+" mapping key
+noremap <F12> :NERDTreeToggle<CR>
+noremap ws! :w !sudo tee %<CR>
