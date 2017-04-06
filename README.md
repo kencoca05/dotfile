@@ -1,5 +1,6 @@
 ## Installing
 - Let's clone this repo and run install.sh to setup all. (my OS currently : ubuntu 16.04)
+- Before installion you need install fonts: https://github.com/ryanoasis/nerd-fonts#font-installation
 ```bash
 git clone https://github.com/snowflower2804/dotfile.git
 sh /dotfile/dotfiles/install.sh
